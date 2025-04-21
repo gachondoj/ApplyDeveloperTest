@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
 import { ContentfulModule } from './contentful/contentful.module';
 import { ProductsModule } from './products/product.module';
 import { AppController } from './app.controller';
@@ -8,6 +9,7 @@ import { AppService } from './app.service';
 
 @Module({
   imports: [
+    AuthModule,
     ContentfulModule,
     ProductsModule,
     ConfigModule.forRoot({
