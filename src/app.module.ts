@@ -1,12 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ContentfulModule } from './contentful/contentful.module';
 import { ProductsModule } from './products/product.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 @Module({
   imports: [
+    ContentfulModule,
+    ProductsModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -20,7 +23,6 @@ import { AppService } from './app.service';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
-    ProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
