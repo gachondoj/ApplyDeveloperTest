@@ -101,10 +101,13 @@ export class ProductsService {
     }));
 
     return {
-      deleted: total ? (deleted / total) * 100 : 0,
-      withPrice: nonDeleted ? (withPrice / nonDeleted) * 100 : 0,
-      withoutPrice: nonDeleted ? (withoutPrice / nonDeleted) * 100 : 0,
-      dateRange: nonDeleted ? (dateRange / nonDeleted) * 100 : 0,
+      deleted: total ? ((deleted / total) * 100).toFixed(2) : 0,
+      withPrice: nonDeleted ? ((withPrice / nonDeleted) * 100).toFixed(2) : 0,
+      withoutPrice: nonDeleted
+        ? ((withoutPrice / nonDeleted) * 100).toFixed(2)
+        : 0,
+      dateRange: nonDeleted ? ((dateRange / nonDeleted) * 100).toFixed(2) : 0,
+      categoryPercentages,
     };
   }
 }
