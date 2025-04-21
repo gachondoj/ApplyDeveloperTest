@@ -3,18 +3,7 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
 import { ProductsService } from '../products/products.service';
-
-interface ContentfulProduct {
-  fields: {
-    name: string;
-    category: string;
-    price?: number;
-  };
-}
-
-interface ContentfulResponse {
-  items: ContentfulProduct[];
-}
+import { ContentfulResponse } from 'src/interfaces/contentful.interfaces';
 
 @Injectable()
 export class ContentfulSyncService {
