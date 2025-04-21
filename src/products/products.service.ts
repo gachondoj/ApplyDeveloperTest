@@ -96,8 +96,9 @@ export class ProductsService {
     const categoryPercentages = categoryCounts.map((item: CategoryCount) => ({
       category: item.category,
       count: Number(item.count),
-      percentage:
-        total > 0 ? ((Number(item.count) / total) * 100).toFixed(2) : 0,
+      percentage: nonDeleted
+        ? ((Number(item.count) / nonDeleted) * 100).toFixed(2)
+        : 0,
     }));
 
     return {
