@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Between, MoreThan, Repository } from 'typeorm';
 import { Product } from './product.entity';
 import { FilterProductsDto } from './dto/filter-products.dto';
+import { CategoryCount } from 'src/interfaces/products.interfaces';
 
 @Injectable()
 export class ProductsService {
@@ -83,6 +84,21 @@ export class ProductsService {
         ),
       },
     });
+
+    const categoryCounts = await this.productRepository
+      .createQueryBuilder('product')
+      .select('product.category', 'category')
+      .addSelect('COUNT(*)', 'count')
+      .where('product.deleted = :deleted', { deleted: false })
+      .groupBy('product.category')
+      .getRawMany();
+
+    const categoryPercentages = categoryCounts.map((item: CategoryCount) => ({
+      category: item.category,
+      count: Number(item.count),
+      percentage:
+        total > 0 ? ((Number(item.count) / total) * 100).toFixed(2) : 0,
+    }));
 
     return {
       deleted: total ? (deleted / total) * 100 : 0,
