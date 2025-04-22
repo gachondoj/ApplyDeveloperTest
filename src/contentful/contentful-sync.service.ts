@@ -15,7 +15,7 @@ export class ContentfulSyncService {
   ) {}
 
   @Cron(CronExpression.EVERY_HOUR)
-  async handleInterval() {
+  async handleCron() {
     this.logger.log('Fetching products from Contentful...');
     const url = `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT}/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=${process.env.CONTENTFUL_CONTENT_TYPE}`;
 
