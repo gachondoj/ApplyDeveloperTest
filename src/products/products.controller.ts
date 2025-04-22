@@ -9,7 +9,7 @@ import {
 import { ApiBearerAuth, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ProductsService } from './products.service';
 import { FilterProductsDto } from './dto/filter-products.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ProductListResponseDto } from './dto/product-response.dto';
 import { ProductReportResponseDto } from './dto/product-report-response.dto';
 
