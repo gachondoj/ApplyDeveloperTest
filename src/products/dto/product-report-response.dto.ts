@@ -1,5 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger';
 
+export class CategoryPercentageDto {
+  @ApiProperty()
+  category: string;
+
+  @ApiProperty()
+  count: number;
+
+  @ApiProperty()
+  percentage: string | number;
+}
+
 export class ProductReportResponseDto {
   @ApiProperty()
   total: number;
@@ -19,6 +30,6 @@ export class ProductReportResponseDto {
   @ApiProperty()
   dateFilteredCount: number;
 
-  @ApiProperty()
-  mostExpensiveProduct: string;
+  @ApiProperty({ type: [CategoryPercentageDto] })
+  categoryPercentages: CategoryPercentageDto[];
 }
