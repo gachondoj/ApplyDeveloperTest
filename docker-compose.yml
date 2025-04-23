@@ -14,8 +14,8 @@ services:
       DB_PASSWORD: nest_password
       DB_NAME: nest_products
       JWT_SECRET: supersecret
-      CONTENTFUL_SPACE_ID: fake
-      CONTENTFUL_ACCESS_TOKEN: fake
+      CONTENTFUL_SPACE_ID: 9xs1613l9f7v
+      CONTENTFUL_ACCESS_TOKEN: I-ThsT55eE_B3sCUWEQyDT4VqVO3x__20ufuie9usns
       CONTENTFUL_ENVIRONMENT: master
       CONTENTFUL_CONTENT_TYPE: product
     restart: unless-stopped
