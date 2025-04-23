@@ -14,8 +14,7 @@ export class ContentfulSyncService {
     private readonly productsService: ProductsService,
   ) {}
 
-  @Cron(CronExpression.EVERY_HOUR)
-  async handleCron() {
+  async syncProductsFromContentful() {
     this.logger.log('Fetching products from Contentful...');
     const url = `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT}/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=${process.env.CONTENTFUL_CONTENT_TYPE}`;
 
@@ -40,5 +39,10 @@ export class ContentfulSyncService {
     } catch (error) {
       this.logger.error('Error syncing Contentful data', error);
     }
+  }
+
+  @Cron(CronExpression.EVERY_HOUR)
+  async handleCron() {
+    await this.syncProductsFromContentful();
   }
 }
