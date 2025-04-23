@@ -17,7 +17,7 @@ async function bootstrap() {
     .setTitle('Products API')
     .setDescription('API for managing products synced from Contentful')
     .setVersion('1.0')
-    .addBearerAuth() // Para que Swagger permita pasar JWT
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
