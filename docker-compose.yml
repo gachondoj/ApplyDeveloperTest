@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: nest_user
+      DB_PASSWORD: nest_password
+      DB_NAME: nest_products
+      JWT_SECRET: supersecret
+      CONTENTFUL_SPACE_ID: fake
+      CONTENTFUL_ACCESS_TOKEN: fake
+      CONTENTFUL_ENVIRONMENT: master
+      CONTENTFUL_CONTENT_TYPE: product
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: nest_user
+      POSTGRES_PASSWORD: nest_password
+      POSTGRES_DB: nest_products
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
